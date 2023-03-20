@@ -1,0 +1,27 @@
+print('{:=^40}'.format('LOJAS PORTELLA'))
+price = float(input('Preço das compras: R$'))
+print('FORMAS DE PAGAMENTO')
+print('''[1] à vista dinheiro/cheque
+[2] à vista cartão 
+[3] 2x no cartão
+[4] 3x ou mais no cartão ''')
+option = int(input('Qual é a opção? '))
+
+if option == 1:
+    payment = price - ((10/100)*price)
+elif option == 2:
+    payment = price - ((5/100)*price)
+elif option == 3:
+    payment = price
+    installments = price/2
+    print('Sua compra será parcelada em 2x no cartão de R${}'.format(installments))
+elif option == 4:
+    portion = int(input('Quantas parcelas? '))
+    installments = (price + ((20/100)*price))/portion
+    payment = price + ((20/100)*price)
+    print('Sua compra será parcelada em {}x de R${:.2f} com juros'.format(portion, installments))
+else:
+    payment = 0
+    print('\033[0:31mOpcão INVÁLIDA de pagamento. Tente novamente\033[m')
+
+print('Sua compra de R${} vai custar R${:.1f} no final'.format(price, payment))
